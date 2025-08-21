@@ -46,7 +46,7 @@ const BackgroundVideo = () => {
           zIndex: 3,
         }}
       />
-      <div className="bg-gray-200/40 absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[2]" />
+      {/* <div className="bg-gray-200/40 absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[2]" /> */}
     </div>
   );
 };
