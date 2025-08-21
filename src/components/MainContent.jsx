@@ -127,7 +127,6 @@ const MainContent = () => {
                 transition={{ duration: 0.25 }}
                 className="drop-shadow-sm drop-shadow-gray-400/90"
                 style={{ width: 62, height: 62 }}
-                whileTap={{ rotate: 360 }}
               >
                 <img
                   src="/BurningIcon-removebg-preview.png"
