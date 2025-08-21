@@ -1,8 +1,9 @@
 import React, { useState } from "react";
 //eslint-disable-next-line
 import { motion } from "framer-motion";
+import Typewriter from "typewriter-effect";
 
-const Modal = ({ isOpen, onClose, children }) => {
+const Modal = ({ isOpen, onClose }) => {
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
 
@@ -41,7 +42,19 @@ const Modal = ({ isOpen, onClose, children }) => {
         {/* Content area */}
         <div className="flex-grow p-3 text-black font-medium overflow-y-auto">
           {/* You can add other content here above the form */}
-          {children}
+          <Typewriter
+            options={{
+              cursor: "", // hides the blinking cursor
+            }}
+            onInit={(typewriter) => {
+              typewriter
+                .typeString("Hello, I am Brent Faiyaz")
+                .pauseFor(500)
+                .typeString("<br/><br/>")
+                .typeString("waazap")
+                .start();
+            }}
+          />
         </div>
 
         {/* Form at bottom */}

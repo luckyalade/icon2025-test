@@ -200,11 +200,7 @@ const MainContent = () => {
         />
 
         {/* Contact Modal */}
-        <Modal isOpen={open} onClose={() => setOpen(false)}>
-          <p>i am brent faiyaz</p>
-          <br />
-          <p>waazap</p>
-        </Modal>
+        <Modal isOpen={open} onClose={() => setOpen(false)} />
 
         {/* Video Modal */}
         <VideoSection isOpen={openVideo} onClose={() => setOpenVideo(false)} />
