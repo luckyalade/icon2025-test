@@ -103,7 +103,7 @@ const VideoSection = ({ isOpen, onClose }) => {
                 href="https://www.dropbox.com/scl/fi/jt2ek6rw1y4ix9uhg61iu/Full-Moon-M9-Loud.wav?rlkey=3iuswtkrh77p7ttxzpr8p16gv&st=yk6ijya7&dl=0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black font-light md:text-xl text-md"
+                className="text-black font-light md:text-xl text-sm"
               >
                 DOWNLOAD HERE
               </a>
