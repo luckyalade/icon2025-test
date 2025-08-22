@@ -28,7 +28,7 @@ const Modal = ({ isOpen, onClose }) => {
       >
         {/* Title Bar */}
         <div className="flex justify-between items-center bg-gradient-to-b from-[#428bef] to-[#428bef] px-2 py-1">
-          <span className="text-white font-semibold text-sm">Contact</span>
+          <span className="text-white font-semibold text-sm">Mail</span>
 
           <button
             aria-label="Close"

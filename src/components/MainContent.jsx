@@ -35,12 +35,23 @@ const MainContent = () => {
   const [openTrash, setOpenTrash] = useState(false);
   const constraintsRef = useRef(null);
 
-  // Preload the large modal images so first-click transitions are smooth
-  const loaded = useImagePreload([LARGE_BURNING, LARGE_TRASH]);
+  // 👇 Track drag state
+  const [isDragging, setIsDragging] = useState(false);
 
-  // Reusable styles for each draggable icon
+  const handleClick = (callback) => {
+    if (!isDragging) callback();
+  };
+
+  const dragEvents = {
+    onDragStart: () => setIsDragging(true),
+    onDragEnd: () => setTimeout(() => setIsDragging(false), 50),
+  };
+
   const iconBase =
     "w-24 min-h-[110px] flex flex-col justify-start items-center text-center shadow-2xl shadow-transparent cursor-pointer";
+
+  // Preload large images
+  const loaded = useImagePreload([LARGE_BURNING, LARGE_TRASH]);
 
   return (
     <LayoutGroup id="desktop">
@@ -54,15 +65,15 @@ const MainContent = () => {
           drag
           dragConstraints={constraintsRef}
           dragElastic={0.1}
+          dragMomentum={false}
           whileTap={{ scale: 0.9 }}
-          onClick={() => setOpenVideo(true)}
+          {...dragEvents}
+          onClick={() => handleClick(() => setOpenVideo(true))}
         >
           <img
             src="/folder-icon-removebg-preview.png"
             alt="folder"
             className="w-12 md:w-16 drop-shadow-sm drop-shadow-gray-400/90"
-            width={64}
-            height={64}
           />
           <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
             full moon.(fall in tokyo)
@@ -75,9 +86,11 @@ const MainContent = () => {
           drag
           dragConstraints={constraintsRef}
           dragElastic={0.1}
+          dragMomentum={false}
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.2 }}
-          onClick={() => setOpenTrash(true)}
+          {...dragEvents}
+          onClick={() => handleClick(() => setOpenTrash(true))}
         >
           <AnimatePresence>
             {!openTrash && (
@@ -95,8 +108,6 @@ const MainContent = () => {
                   src="/trashcan-removebg-preview.png"
                   alt="trash"
                   className="w-full h-full object-contain"
-                  width={64}
-                  height={64}
                 />
               </motion.div>
             )}
@@ -112,9 +123,11 @@ const MainContent = () => {
           drag
           dragConstraints={constraintsRef}
           dragElastic={0.1}
+          dragMomentum={false}
           whileTap={{ scale: 0.9 }}
           transition={{ duration: 0.2 }}
-          onClick={() => setOpenBurning(true)}
+          {...dragEvents}
+          onClick={() => handleClick(() => setOpenBurning(true))}
         >
           <AnimatePresence>
             {!openBurning && (
@@ -132,8 +145,6 @@ const MainContent = () => {
                   src="/BurningIcon-removebg-preview.png"
                   alt="burning"
                   className="w-full h-full object-contain"
-                  width={62}
-                  height={62}
                 />
               </motion.div>
             )}
@@ -146,18 +157,18 @@ const MainContent = () => {
         {/* Lookbook */}
         <motion.section
           className={iconBase}
-          onClick={() => setShowModal(true)}
           drag
           dragConstraints={constraintsRef}
           dragElastic={0.1}
+          dragMomentum={false}
           whileTap={{ scale: 0.9 }}
+          {...dragEvents}
+          onClick={() => handleClick(() => setShowModal(true))}
         >
           <img
             src="/lookbook1-removebg-preview.png"
             alt="lookbook"
             className="w-14 drop-shadow-sm drop-shadow-gray-400/90"
-            width={56}
-            height={56}
           />
           <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
             Lookbook1
@@ -167,21 +178,21 @@ const MainContent = () => {
         {/* Contact */}
         <motion.section
           className={iconBase}
-          onClick={() => setOpen(true)}
           drag
           dragConstraints={constraintsRef}
           dragElastic={0.1}
+          dragMomentum={false}
           whileTap={{ scale: 0.9 }}
+          {...dragEvents}
+          onClick={() => handleClick(() => setOpen(true))}
         >
           <img
             src="/icons8-email-144.png"
             alt="contact"
             className="w-[68px] drop-shadow-sm drop-shadow-gray-400/90 opacity-80"
-            width={68}
-            height={68}
           />
           <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
-            CONTACT
+            MAIL
           </p>
         </motion.section>
 
@@ -222,15 +233,12 @@ const MainContent = () => {
                 >
                   ✕
                 </button>
-
-                {/* Shared element on the WRAPPER with fixed size */}
                 <motion.div
                   layoutId="burningIcon"
                   key="burningIconLarge"
                   transition={{ duration: 0.6, ease: "easeInOut" }}
                   className="rounded-full drop-shadow-2xl overflow-hidden w-[280px] h-[280px] sm:w-[400px] sm:h-[400px] md:w-[500px] md:h-[500px]"
                 >
-                  {/* Optional simple fallback while image is loading */}
                   {!loaded[LARGE_BURNING] && (
                     <div className="w-full h-full grid place-items-center text-white/70 text-sm">
                       Loading…
@@ -240,8 +248,6 @@ const MainContent = () => {
                     src={LARGE_BURNING}
                     alt="Burning Icon Large"
                     className="w-full h-full object-contain"
-                    width={500}
-                    height={500}
                     style={{
                       display: loaded[LARGE_BURNING] ? "block" : "none",
                     }}
@@ -269,8 +275,6 @@ const MainContent = () => {
                 >
                   ✕
                 </button>
-
-                {/* Shared element on the WRAPPER with fixed size */}
                 <motion.div
                   layoutId="trashIcon"
                   key="trashIconLarge"
@@ -286,9 +290,9 @@ const MainContent = () => {
                     src={LARGE_TRASH}
                     alt="Trash Large"
                     className="w-full h-full object-contain"
-                    width={500}
-                    height={500}
-                    style={{ display: loaded[LARGE_TRASH] ? "block" : "none" }}
+                    style={{
+                      display: loaded[LARGE_TRASH] ? "block" : "none",
+                    }}
                   />
                 </motion.div>
               </div>
