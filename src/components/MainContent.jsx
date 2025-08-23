@@ -71,7 +71,7 @@ const MainContent = () => {
           onClick={() => handleClick(() => setOpenVideo(true))}
         >
           <img
-            src="/folder-icon-removebg-preview.png"
+            src="/folder-icon.png"
             alt="folder"
             className="w-12 md:w-16 drop-shadow-sm drop-shadow-gray-400/90"
           />
@@ -105,7 +105,7 @@ const MainContent = () => {
                 style={{ width: 64, height: 64 }}
               >
                 <img
-                  src="/trashcan-removebg-preview.png"
+                  src="/trashcan-icon.png"
                   alt="trash"
                   className="w-full h-full object-contain"
                 />
@@ -142,7 +142,7 @@ const MainContent = () => {
                 style={{ width: 62, height: 62 }}
               >
                 <img
-                  src="/BurningIcon-removebg-preview.png"
+                  src="/burningIcon.png"
                   alt="burning"
                   className="w-full h-full object-contain"
                 />
@@ -166,7 +166,7 @@ const MainContent = () => {
           onClick={() => handleClick(() => setShowModal(true))}
         >
           <img
-            src="/lookbook1-removebg-preview.png"
+            src="/lookbook1-icon.png"
             alt="lookbook"
             className="w-14 drop-shadow-sm drop-shadow-gray-400/90"
           />
