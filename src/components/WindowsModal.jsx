@@ -48,6 +48,7 @@ const Modal = ({ isOpen, onClose }) => {
             }}
             onInit={(typewriter) => {
               typewriter
+                .pauseFor(300)
                 .typeString("welcome to icon")
                 .pauseFor(500)
                 .typeString(".")
