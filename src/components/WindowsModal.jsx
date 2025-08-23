@@ -33,7 +33,7 @@ const Modal = ({ isOpen, onClose }) => {
           <button
             aria-label="Close"
             onClick={onClose}
-            className="px-1 bg-red-400 text-white text-xs font-light border border-gray-600"
+            className="px-1 bg-red-400 hover:bg-red-500 text-white text-xs font-light border border-gray-600 transition-all duration-300"
           >
             x
           </button>
@@ -48,10 +48,26 @@ const Modal = ({ isOpen, onClose }) => {
             }}
             onInit={(typewriter) => {
               typewriter
-                .typeString("Hello, I am Brent Faiyaz")
+                .typeString("welcome to icon")
+                .pauseFor(500)
+                .typeString(".")
+                .pauseFor(500)
+                .typeString(".")
+                .pauseFor(500)
+                .typeString(".")
                 .pauseFor(500)
                 .typeString("<br/><br/>")
-                .typeString("waazap")
+                .typeString("please take a second to calibrate your senses")
+                .typeString(".")
+                .pauseFor(500)
+                .typeString(".")
+                .pauseFor(500)
+                .typeString(".")
+                .pauseFor(500)
+                .typeString("<br/><br/>")
+                .typeString("send us a message if you wish")
+                .pauseFor(500)
+                .typeString(".")
                 .start();
             }}
           />
@@ -74,7 +90,7 @@ const Modal = ({ isOpen, onClose }) => {
           />
           <button
             type="submit"
-            className="mt-3 py-2 px-4 bg-[#428bef] hover:bg-[#428dee] text-white rounded shadow text-sm transition"
+            className="mt-3 py-2 px-4 bg-[#428bef] hover:bg-[#0968e5] text-white rounded shadow text-sm transition-all duration-300"
           >
             Send
           </button>
