@@ -47,6 +47,16 @@ const MainContent = () => {
     onDragEnd: () => setTimeout(() => setIsDragging(false), 50),
   };
 
+  const originalTitle = useRef(document.title);
+
+  useEffect(() => {
+    if (openVideo) {
+      document.title = "full moon. -ICON2025";
+    } else {
+      document.title = originalTitle.current;
+    }
+  }, [openVideo]);
+
   const iconBase =
     "w-24 min-h-[110px] flex flex-col justify-start items-center text-center shadow-2xl shadow-transparent cursor-pointer";
 
