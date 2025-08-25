@@ -103,9 +103,9 @@ const VideoSection = ({ isOpen, onClose }) => {
                 href="https://www.dropbox.com/scl/fi/jt2ek6rw1y4ix9uhg61iu/Full-Moon-M9-Loud.wav?rlkey=3iuswtkrh77p7ttxzpr8p16gv&st=yk6ijya7&dl=0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="text-black font-bold md:text-xl text-xs"
+                className="inline-block text-black font-bold md:text-xl text-xs transform transition-transform duration-500 hover:scale-105"
               >
-                download here
+                download full moon - M8 - Loud
               </a>
             </div>
           </motion.div>
