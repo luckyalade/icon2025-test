@@ -19,7 +19,10 @@ const Modal = ({ isOpen, onClose }) => {
   if (!isOpen) return null;
 
   return (
-    <div className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 px-4 md:px-0">
+    <div
+      className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 px-4 md:px-0"
+      onClick={onClose}
+    >
       <motion.div
         className="bg-gray-200 w-[400px] h-[500px] md:h-[600px] shadow-md rounded-sm overflow-hidden border-2 border-[#4895e5] flex flex-col"
         initial={{ opacity: 0, y: 60 }}
