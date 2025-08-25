@@ -211,12 +211,12 @@ const MainContent = () => {
           isOpen={showModal}
           onClose={() => setShowModal(false)}
           cardsData={[
-            { id: 1, img: "/oanda-lookbook-processed/SITE-IMAGE-001.png" },
-            { id: 2, img: "/oanda-lookbook-processed/SITE-IMAGE-002.png" },
-            { id: 3, img: "/oanda-lookbook-processed/SITE-IMAGE-003.jpeg" },
-            { id: 4, img: "/oanda-lookbook-processed/SITE-IMAGE-004.png" },
-            { id: 5, img: "/oanda-lookbook-processed/SITE-IMAGE-005.png" },
-            { id: 6, img: "/oanda-lookbook-processed/SITE-IMAGE-006.png" },
+            { id: 1, img: "/brent-faiyaz/brent-faiyaz-one.jpg" },
+            { id: 2, img: "/brent-faiyaz/brent-faiyaz-two.jpg" },
+            { id: 3, img: "/brent-faiyaz/brent-faiyaz-three.jpg" },
+            { id: 4, img: "/brent-faiyaz/brent-faiyaz-four.jpg" },
+            { id: 5, img: "/brent-faiyaz/brent-faiyaz-five.jpg" },
+            { id: 6, img: "/brent-faiyaz/brent-faiyaz-six.jpg" },
           ]}
         />
 
