@@ -17,7 +17,7 @@ const BackgroundVideo = () => {
           opacity: 1,
           width: "100%",
           height: "100%",
-          zIndex: 2,
+          zIndex: 0,
           visibility: "visible",
           objectFit: "cover",
           position: "absolute",
@@ -43,7 +43,7 @@ const BackgroundVideo = () => {
             'url("https://icon2025.com/_jsapps/backdrop/video/assets/noise.png")',
           display: "block",
           pointerEvents: "none",
-          zIndex: 3,
+          zIndex: 0,
         }}
       />
       {/* <div className="bg-gray-200/40 absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[2]" /> */}

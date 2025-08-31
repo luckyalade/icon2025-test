@@ -4,6 +4,7 @@ import CardStackModal from "./LookBook";
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import Modal from "./WindowsModal";
 import VideoSection from "./VideoSection";
+import WebampReactApp from "./Webamp";
 
 const LARGE_BURNING =
   "https://freight.cargo.site/t/original/i/ebe9ab5e73c964815f0062d9e4d8358c30f1b6fc9bb2b43c8bbae30594c18ecc/BurningIcon.png";
@@ -33,6 +34,7 @@ const MainContent = () => {
   const [openVideo, setOpenVideo] = useState(false);
   const [openBurning, setOpenBurning] = useState(false);
   const [openTrash, setOpenTrash] = useState(false);
+  const [showWebamp, setShowWebamp] = useState(false);
   const constraintsRef = useRef(null);
 
   // 👇 Track drag state
@@ -66,29 +68,56 @@ const MainContent = () => {
   return (
     <LayoutGroup id="desktop">
       <main
-        className="z-10 relative w-full h-screen flex flex-col justify-start items-start gap-4 pt-14 pl-4 md:pl-10 overflow-hidden"
+        className="relative w-full h-screen flex flex-col justify-start items-start gap-[18px] pt-14 pl-4 md:pl-10 overflow-hidden"
         ref={constraintsRef}
       >
-        {/* Folder */}
-        <motion.section
-          className={iconBase}
-          drag
-          dragConstraints={constraintsRef}
-          dragElastic={0.1}
-          dragMomentum={false}
-          whileTap={{ scale: 0.9 }}
-          {...dragEvents}
-          onClick={() => handleClick(() => setOpenVideo(true))}
-        >
-          <img
-            src="/folder-icon.png"
-            alt="folder"
-            className="w-12 md:w-16 drop-shadow-sm drop-shadow-gray-400/90"
-          />
-          <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
-            full moon.(fall in tokyo)
-          </p>
-        </motion.section>
+        {showWebamp && <WebampReactApp key="webamp-singleton" />}
+        
+        {/* Folder and Webamp Player Row */}
+        <div className="flex flex-row gap-[18px] md:gap-[18px] justify-between md:justify-start w-full md:w-auto mr-2 md:mr-0">
+          {/* Folder */}
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            whileTap={{ scale: 0.9 }}
+            {...dragEvents}
+            onClick={() => handleClick(() => setOpenVideo(true))}
+          >
+            <img
+              src="/folder-icon.png"
+              alt="folder"
+              className="w-16 drop-shadow-sm drop-shadow-gray-400/90"
+            />
+            <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
+              full moon.(fall in tokyo)
+            </p>
+          </motion.section>
+
+          {/* Webamp Player */}
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            whileTap={{ scale: 0.9 }}
+            {...dragEvents}
+            onClick={() => handleClick(() => setShowWebamp(!showWebamp))}
+          >
+            {/* <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mt-2 md:mt-1 bg-gradient-to-br from-blue-900/85 to-gray-900/85 rounded-md shadow-lg">
+              <div className="text-white text-xl md:text-2xl font-bold">
+                {showWebamp ? "♪" : "♫"}
+              </div>
+            </div> */}
+            <img src="/winamp_2014.png" alt="webamp logo" className="w-12 h-12 md:w-12 md:h-12 opacity-80 md:opacity-70 mt-1 mr-3 md:mr-0 md:mt-1 rounded-md drop-shadow-sm drop-shadow-gray-400/90"/>
+            <p className="text-gray-50/90 text-xs mt-2 mr-3 md:mr-0 text-shadow-lg leading-tight w-10 ">
+              {showWebamp ? "Hide Player" : "Show Player"}
+            </p>
+          </motion.section>
+        </div>
 
         {/* Trash */}
         <motion.section
@@ -111,13 +140,13 @@ const MainContent = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="drop-shadow-sm drop-shadow-gray-400/90"
+                className=""
                 style={{ width: 64, height: 64 }}
               >
                 <img
                   src="/trashcan-icon.png"
                   alt="trash"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain drop-shadow-sm drop-shadow-gray-400/90"
                 />
               </motion.div>
             )}
@@ -148,13 +177,13 @@ const MainContent = () => {
                 animate={{ opacity: 1 }}
                 exit={{ opacity: 0 }}
                 transition={{ duration: 0.25 }}
-                className="drop-shadow-sm drop-shadow-gray-400/90"
+                className=""
                 style={{ width: 62, height: 62 }}
               >
                 <img
                   src="/burningIcon.png"
                   alt="burning"
-                  className="w-full h-full object-contain"
+                  className="w-full h-full object-contain drop-shadow-sm drop-shadow-gray-400/90"
                 />
               </motion.div>
             )}
@@ -199,7 +228,7 @@ const MainContent = () => {
           <img
             src="/icons8-email-144.png"
             alt="contact"
-            className="w-[68px] drop-shadow-sm drop-shadow-gray-400/90 opacity-80"
+            className="w-[68px] opacity-80 drop-shadow-sm drop-shadow-gray-400/90"
           />
           <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
             MAIL
@@ -230,7 +259,7 @@ const MainContent = () => {
         <AnimatePresence mode="wait">
           {openBurning && (
             <motion.div
-              className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+              className="fixed inset-0 bg-black/70 flex items-center justify-center z-30"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}
@@ -257,7 +286,7 @@ const MainContent = () => {
                   <img
                     src={LARGE_BURNING}
                     alt="Burning Icon Large"
-                    className="w-full h-full object-contain"
+                    className="w-full h-full object-contain "
                     style={{
                       display: loaded[LARGE_BURNING] ? "block" : "none",
                     }}
@@ -272,7 +301,7 @@ const MainContent = () => {
         <AnimatePresence mode="wait">
           {openTrash && (
             <motion.div
-              className="fixed inset-0 bg-black/70 flex items-center justify-center z-50"
+              className="fixed inset-0 bg-black/70 flex items-center justify-center z-30"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               exit={{ opacity: 0 }}

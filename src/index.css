@@ -46,3 +46,8 @@ body {
     border-color: rgba(0, 0, 0, 0.85);
   }
 }
+
+.inverted {
+  filter: invert(2);
+}
+
