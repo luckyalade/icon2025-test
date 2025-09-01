@@ -117,7 +117,7 @@ const MainContent = () => {
               alt="webamp logo"
               className="w-[50px] h-[50px] md:w-12 md:h-12 opacity-80 md:opacity-70 mt-1 mr-5 md:mr-0 md:mt-1 rounded-md drop-shadow-sm drop-shadow-gray-400/90"
             />
-            <p className="text-gray-50/90 text-xs mt-2 mr-3 md:mr-0 text-shadow-lg leading-tight w-10 ">
+            <p className="text-gray-50/90 text-xs mt-2 mr-5 md:mr-0 text-shadow-lg leading-tight w-10 ">
               {showWebamp ? "Hide Player" : "Show Player"}
             </p>
           </motion.section>
