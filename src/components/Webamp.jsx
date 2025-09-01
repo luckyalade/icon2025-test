@@ -193,7 +193,7 @@ const WebampReactApp = ({ changeSkinTrigger }) => {
 
   return (
     <motion.div
-      className="absolute left-1/2 top-1/2 md:top-[45%] -translate-x-1/2 translate-y-1/2"
+      className="absolute left-1/2 top-[45%] -translate-x-1/2 translate-y-1/2"
       onClick={handleBackgroundTap}
       onTouchEnd={(e) => {
         if (e.target === e.currentTarget) {
