@@ -81,10 +81,10 @@ export default function CardStackModal({
           height: isMobile ? "75vh" : cardDimensions.height + 110,
           backgroundColor: "white",
           backgroundImage:
-            "url('https://icon2025.com/_jsapps/backdrop/video/assets/noise.png')",
+            "url('/blue-bg-image.png')",
           backgroundSize: "cover",
           borderRadius: "12px",
-          border: "2px solid #ddd",
+          border: "2px solid #0061a5",
         }}
         initial={{ opacity: 0, y: 60 }}
         animate={{ opacity: 1, y: 0 }}
@@ -99,7 +99,7 @@ export default function CardStackModal({
         </button>
 
         {/* Instructions */}
-        <div className="absolute top-3 left-3 text-xs sm:text-sm text-black z-50">
+        <div className="absolute top-3 left-3 text-xs sm:text-sm text-black z-50 text-white">
           drag to shuffle
         </div>
 
@@ -180,7 +180,7 @@ export default function CardStackModal({
             href="https://www.youtube.com/watch?v=dku79-2_SCQ&t=24s"
             target="_blank"
             rel="noopener noreferrer"
-            className="text-black text-xs sm:text-sm px-4 py-1 cursor-pointer text-center hover:bg-black hover:text-white transition-all duration-500 rounded"
+            className="text-white text-xs sm:text-sm px-4 py-1 cursor-pointer text-center hover:bg-black hover:text-white transition-all duration-500 rounded"
           >
             full moon. (fall in tokyo)
           </a>

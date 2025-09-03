@@ -5,6 +5,7 @@ import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
 import Modal from "./WindowsModal";
 import VideoSection from "./VideoSection";
 import WebampReactApp from "./Webamp";
+import FolderIcon from "./FolderIcon";
 
 const LARGE_BURNING =
   "https://freight.cargo.site/t/original/i/ebe9ab5e73c964815f0062d9e4d8358c30f1b6fc9bb2b43c8bbae30594c18ecc/BurningIcon.png";
@@ -60,7 +61,7 @@ const MainContent = () => {
   }, [openVideo]);
 
   const iconBase =
-    "w-24 min-h-[110px] flex flex-col justify-start items-center text-center shadow-2xl shadow-transparent cursor-pointer";
+    "w-fit min-h-[90px] flex flex-col justify-start items-center text-center shadow-2xl shadow-transparent cursor-pointer";
 
   // Preload large images
   const loaded = useImagePreload([LARGE_BURNING, LARGE_TRASH]);
@@ -68,13 +69,13 @@ const MainContent = () => {
   return (
     <LayoutGroup id="desktop">
       <main
-        className="relative w-full h-screen flex flex-col justify-start items-start gap-[18px] pt-14 pl-4 md:pl-10 overflow-hidden"
+        className="relative w-full h-screen flex flex-col justify-start items-start gap-2 pt-14 pl-4 md:pl-10 overflow-hidden"
         ref={constraintsRef}
       >
         {showWebamp && <WebampReactApp key="webamp-singleton" />}
 
-        {/* Folder and Webamp Player Row */}
-        <div className="flex flex-row gap-[18px] md:gap-[18px] justify-between md:justify-start w-full md:w-auto mr-2 md:mr-0">
+        {/* All Icons in Single Column */}
+        <div className="flex flex-col gap-2">
           {/* Folder */}
           <motion.section
             className={iconBase}
@@ -82,18 +83,13 @@ const MainContent = () => {
             dragConstraints={constraintsRef}
             dragElastic={0.1}
             dragMomentum={false}
-            whileTap={{ scale: 0.9 }}
             {...dragEvents}
-            onClick={() => handleClick(() => setOpenVideo(true))}
           >
-            <img
-              src="/folder-icon.png"
-              alt="folder"
-              className="w-16 drop-shadow-sm drop-shadow-gray-400/90"
+            <FolderIcon
+              title="full moon.(fall in tokyo)"
+              onClick={() => handleClick(() => setOpenVideo(true))}
+              index={0}
             />
-            <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
-              full moon.(fall in tokyo)
-            </p>
           </motion.section>
 
           {/* Webamp Player */}
@@ -103,141 +99,113 @@ const MainContent = () => {
             dragConstraints={constraintsRef}
             dragElastic={0.1}
             dragMomentum={false}
-            whileTap={{ scale: 0.9 }}
             {...dragEvents}
-            onClick={() => handleClick(() => setShowWebamp(!showWebamp))}
           >
-            {/* <div className="w-10 h-10 md:w-12 md:h-12 flex items-center justify-center mt-2 md:mt-1 bg-gradient-to-br from-blue-900/85 to-gray-900/85 rounded-md shadow-lg">
-              <div className="text-white text-xl md:text-2xl font-bold">
-                {showWebamp ? "♪" : "♫"}
-              </div>
-            </div> */}
-            <img
-              src="/winamp_2014.png"
-              alt="webamp logo"
-              className="w-[50px] h-[50px] md:w-12 md:h-12 opacity-80 md:opacity-70 mt-1 mr-9 md:mr-0 md:mt-1 rounded-md drop-shadow-sm drop-shadow-gray-400/90"
+            <FolderIcon
+              title={showWebamp ? "hide player" : "show player"}
+              onClick={() => handleClick(() => setShowWebamp(!showWebamp))}
+              index={1}
             />
-            <p className="text-gray-50/90 text-xs mt-2 mr-9 md:mr-0 text-shadow-lg leading-tight w-10 ">
-              {showWebamp ? "Hide Player" : "Show Player"}
-            </p>
+          </motion.section>
+
+          {/* Trash */}
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            transition={{ duration: 0.2 }}
+            {...dragEvents}
+          >
+            <AnimatePresence>
+              {!openTrash && (
+                <motion.div
+                  layoutId="trashIcon"
+                  key="trashIconSmall"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className=""
+                  style={{ width: 64, height: 64 }}
+                >
+                  <FolderIcon
+                    title="trash"
+                    onClick={() => handleClick(() => setOpenTrash(true))}
+                    index={2}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.section>
+
+          {/* Burning Icon */}
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            transition={{ duration: 0.2 }}
+            {...dragEvents}
+          >
+            <AnimatePresence>
+              {!openBurning && (
+                <motion.div
+                  layoutId="burningIcon"
+                  key="burningIconSmall"
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.25 }}
+                  className=""
+                  style={{ width: 62, height: 62 }}
+                >
+                  <FolderIcon
+                    title="burning icon"
+                    onClick={() => handleClick(() => setOpenBurning(true))}
+                    index={3}
+                  />
+                </motion.div>
+              )}
+            </AnimatePresence>
+          </motion.section>
+
+          {/* Lookbook */}
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            {...dragEvents}
+          >
+            <FolderIcon
+              title="lookbook1"
+              onClick={() => handleClick(() => setShowModal(true))}
+              index={4}
+            />
+          </motion.section>
+
+          {/* Contact */}
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            {...dragEvents}
+          >
+            <FolderIcon
+              title="mail"
+              onClick={() => handleClick(() => setOpen(true))}
+              index={5}
+            />
           </motion.section>
         </div>
 
-        {/* Trash */}
-        <motion.section
-          className={iconBase}
-          drag
-          dragConstraints={constraintsRef}
-          dragElastic={0.1}
-          dragMomentum={false}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.2 }}
-          {...dragEvents}
-          onClick={() => handleClick(() => setOpenTrash(true))}
-        >
-          <AnimatePresence>
-            {!openTrash && (
-              <motion.div
-                layoutId="trashIcon"
-                key="trashIconSmall"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className=""
-                style={{ width: 64, height: 64 }}
-              >
-                <img
-                  src="/trashcan-icon.png"
-                  alt="trash"
-                  className="w-full h-full object-contain drop-shadow-sm drop-shadow-gray-400/90"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
-            TRASH
-          </p>
-        </motion.section>
 
-        {/* Burning Icon */}
-        <motion.section
-          className={iconBase}
-          drag
-          dragConstraints={constraintsRef}
-          dragElastic={0.1}
-          dragMomentum={false}
-          whileTap={{ scale: 0.9 }}
-          transition={{ duration: 0.2 }}
-          {...dragEvents}
-          onClick={() => handleClick(() => setOpenBurning(true))}
-        >
-          <AnimatePresence>
-            {!openBurning && (
-              <motion.div
-                layoutId="burningIcon"
-                key="burningIconSmall"
-                initial={{ opacity: 0 }}
-                animate={{ opacity: 1 }}
-                exit={{ opacity: 0 }}
-                transition={{ duration: 0.25 }}
-                className=""
-                style={{ width: 62, height: 62 }}
-              >
-                <img
-                  src="/burningIcon.png"
-                  alt="burning"
-                  className="w-full h-full object-contain drop-shadow-sm drop-shadow-gray-400/90"
-                />
-              </motion.div>
-            )}
-          </AnimatePresence>
-          <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
-            Burning Icon
-          </p>
-        </motion.section>
-
-        {/* Lookbook */}
-        <motion.section
-          className={iconBase}
-          drag
-          dragConstraints={constraintsRef}
-          dragElastic={0.1}
-          dragMomentum={false}
-          whileTap={{ scale: 0.9 }}
-          {...dragEvents}
-          onClick={() => handleClick(() => setShowModal(true))}
-        >
-          <img
-            src="/lookbook1-icon.png"
-            alt="lookbook"
-            className="w-14 drop-shadow-sm drop-shadow-gray-400/90"
-          />
-          <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
-            Lookbook1
-          </p>
-        </motion.section>
-
-        {/* Contact */}
-        <motion.section
-          className={iconBase}
-          drag
-          dragConstraints={constraintsRef}
-          dragElastic={0.1}
-          dragMomentum={false}
-          whileTap={{ scale: 0.9 }}
-          {...dragEvents}
-          onClick={() => handleClick(() => setOpen(true))}
-        >
-          <img
-            src="/icons8-email-144.png"
-            alt="contact"
-            className="w-[68px] opacity-80 drop-shadow-sm drop-shadow-gray-400/90"
-          />
-          <p className="text-gray-50/90 text-xs mt-2 text-shadow-lg leading-tight">
-            MAIL
-          </p>
-        </motion.section>
 
         {/* Lookbook Modal */}
         <CardStackModal

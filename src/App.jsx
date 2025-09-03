@@ -12,7 +12,7 @@ function App() {
       animate={{ opacity: 1 }}
       transition={{ duration: 1 }}
     >
-      <BackgroundVideo />
+      {/* <BackgroundVideo /> */}
       <Header />
       <MainContent />
     </motion.div>

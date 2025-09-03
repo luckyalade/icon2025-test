@@ -39,10 +39,10 @@ const VideoSection = ({ isOpen, onClose }) => {
             style={{
               backgroundColor: "white",
               backgroundImage:
-                "url('https://icon2025.com/_jsapps/backdrop/video/assets/noise.png')",
+                "url('/blue-bg-image.png')",
               backgroundSize: "cover",
               borderRadius: "12px",
-              border: "2px solid #ddd",
+              border: "2px solid #0061a5",
             }}
             initial={{ opacity: 0, y: 60 }}
             animate={{ opacity: 1, y: 0 }}
@@ -52,9 +52,9 @@ const VideoSection = ({ isOpen, onClose }) => {
             {/* Close button */}
             <button
               onClick={onClose}
-              className="absolute top-2 right-2 bg-gray-200 rounded-full w-8 h-8 flex items-center justify-center hover:bg-gray-300 transition"
+              className="absolute top-2 right-2 bg-gray-200 rounded-full w-6 h-6 flex items-center justify-center hover:bg-gray-300 transition"
             >
-              x
+              ✕
             </button>
 
             {/* Video container */}
@@ -103,9 +103,9 @@ const VideoSection = ({ isOpen, onClose }) => {
                 href="https://www.dropbox.com/scl/fi/jt2ek6rw1y4ix9uhg61iu/Full-Moon-M9-Loud.wav?rlkey=3iuswtkrh77p7ttxzpr8p16gv&st=yk6ijya7&dl=0"
                 target="_blank"
                 rel="noopener noreferrer"
-                className="inline-block text-black font-bold md:text-xl text-xs transform transition-transform duration-500 hover:scale-105"
+                className="inline-block text-white font-bold md:text-lg text-xs transform transition-transform duration-500 hover:scale-105"
               >
-                download full moon - M8 - Loud
+                download full moon - m8 - loud
               </a>
             </div>
           </motion.div>

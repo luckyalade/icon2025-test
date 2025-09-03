@@ -1,4 +1,4 @@
-@import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Pixelify+Sans:wght@400..700&display=swap");
+/* @import url("https://fonts.googleapis.com/css2?family=Courier+Prime:ital,wght@0,400;0,700;1,400;1,700&family=Pixelify+Sans:wght@400..700&display=swap"); */
 
 @import "tailwindcss";
 
@@ -6,10 +6,10 @@ body {
   margin: 0;
   padding: 0;
   box-sizing: border-box;
-  font-family: "Courier Prime", monospace;
+  font-family: "Helvetica, Arial, sans-serif";
   font-weight: 700;
   font-style: normal;
-  background-color: gray;
+  background-color: #0061a5;
 }
 
 @layer utilities {
