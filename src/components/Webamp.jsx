@@ -21,15 +21,15 @@ const initialTracks = [
 
 // Define the AOL Instant Messenger Amp skin as our default
 const AOL_INSTANT_MESSENGER_AMP_SKIN = {
-  url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/AOL_Instant_Messanger_Amp.wsz",
-  name: "AOL Instant Messenger Amp",
+  url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/alade_5.wsz.zip",
+  name: "Icon Radio",
 };
 
 const availableSkins = [
   AOL_INSTANT_MESSENGER_AMP_SKIN,
   {
-    url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/AOL_Instant_Messanger_Amp.wsz",
-    name: "AOL Instant Messenger Amp",
+    url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/alade_5.wsz.zip",
+    name: "Icon Radio",
   },
 ];
 
@@ -129,7 +129,7 @@ const WebampReactApp = ({ changeSkinTrigger }) => {
                 milkdrop: {
                   position: { x: 275, y: 0 },
                   size: [275, 116],
-                  title: "Pondimap",
+                  title: "Icon Radio",
                 },
               },
             });
@@ -147,7 +147,7 @@ const WebampReactApp = ({ changeSkinTrigger }) => {
             } else {
               webamp.dispose();
             }
-            
+
             initializationPromise = null;
             isInitializing = false;
           })();
@@ -165,7 +165,7 @@ const WebampReactApp = ({ changeSkinTrigger }) => {
 
     return () => {
       isDisposed = true;
-      
+
       if (unsubscribeRef.current) {
         unsubscribeRef.current();
         unsubscribeRef.current = null;
