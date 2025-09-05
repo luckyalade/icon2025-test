@@ -1,24 +1,22 @@
 import React, { useEffect, useState } from "react";
-//eslint-disable-next-line
 import { motion, AnimatePresence } from "framer-motion";
 
-const VIDEO_ID = "dku79-2_SCQ";
-const EMBED_BASE = `https://www.youtube.com/embed/${VIDEO_ID}`;
-const MAXRES_THUMB = `https://img.youtube.com/vi/${VIDEO_ID}/maxresdefault.jpg`;
-const HQ_THUMB = `https://img.youtube.com/vi/${VIDEO_ID}/hqdefault.jpg`;
+const VideoModal = ({ isOpen, onClose, videoId, title, downloadUrl, downloadText }) => {
+  const EMBED_BASE = `https://www.youtube.com/embed/${videoId}`;
+  const MAXRES_THUMB = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
+  const HQ_THUMB = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
 
-const VideoSection = ({ isOpen, onClose }) => {
   const [videoSrc, setVideoSrc] = useState("");
   const [thumbSrc, setThumbSrc] = useState(MAXRES_THUMB);
 
   useEffect(() => {
     if (isOpen) {
-      setVideoSrc("");
+      setVideoSrc(""); // reset so thumbnail shows until play is clicked
       setThumbSrc(MAXRES_THUMB);
     } else {
       setVideoSrc("");
     }
-  }, [isOpen]);
+  }, [isOpen, videoId]);
 
   return (
     <AnimatePresence>
@@ -34,12 +32,11 @@ const VideoSection = ({ isOpen, onClose }) => {
 
           {/* Modal */}
           <motion.div
-            className="relative rounded-md shadow-lg w-[90%] max-w-3xl px-2 pt-2 md:pt-12 md:px-12  "
+            className="relative rounded-md shadow-lg w-[90%] max-w-3xl px-2 pt-2 md:pt-12 md:px-12"
             onClick={(e) => e.stopPropagation()}
             style={{
               backgroundColor: "white",
-              backgroundImage:
-                "url('/blue-bg-image.png')",
+              backgroundImage: "url('/blue-bg-image.png')",
               backgroundSize: "cover",
               borderRadius: "12px",
               border: "2px solid #0061a5",
@@ -57,13 +54,13 @@ const VideoSection = ({ isOpen, onClose }) => {
               ✕
             </button>
 
-            {/* Video container */}
+            {/* Video */}
             <div className="relative w-full pb-[56.25%] h-0 overflow-hidden">
               {videoSrc ? (
                 <iframe
                   className="absolute top-0 left-0 w-full h-full"
                   src={videoSrc}
-                  title="Brent Faiyaz - full moon. (fall in tokyo)"
+                  title={title}
                   allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture"
                   allowFullScreen
                 />
@@ -78,7 +75,7 @@ const VideoSection = ({ isOpen, onClose }) => {
                     onError={() => {
                       if (thumbSrc !== HQ_THUMB) setThumbSrc(HQ_THUMB);
                     }}
-                    alt="Video thumbnail"
+                    alt={`${title} thumbnail`}
                     className="absolute top-0 left-0 w-full h-full object-cover"
                   />
                   <div className="absolute inset-0 flex items-center justify-center">
@@ -98,16 +95,18 @@ const VideoSection = ({ isOpen, onClose }) => {
             </div>
 
             {/* Download link */}
-            <div className="py-2 md:py-6 text-center">
-              <a
-                href="https://www.dropbox.com/scl/fi/jt2ek6rw1y4ix9uhg61iu/Full-Moon-M9-Loud.wav?rlkey=3iuswtkrh77p7ttxzpr8p16gv&st=yk6ijya7&dl=0"
-                target="_blank"
-                rel="noopener noreferrer"
-                className="inline-block text-white font-bold md:text-lg text-xs transform transition-transform duration-500 hover:scale-105"
-              >
-                download full moon - m8 - loud
-              </a>
-            </div>
+            {downloadUrl && (
+              <div className="py-2 md:py-6 text-center">
+                <a
+                  href={downloadUrl}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="inline-block text-white font-bold md:text-lg text-xs transform transition-transform duration-500 hover:scale-105"
+                >
+                  {downloadText}
+                </a>
+              </div>
+            )}
           </motion.div>
         </motion.div>
       )}
@@ -115,4 +114,4 @@ const VideoSection = ({ isOpen, onClose }) => {
   );
 };
 
-export default VideoSection;
+export default VideoModal;

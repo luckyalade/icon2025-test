@@ -32,7 +32,8 @@ function useImagePreload(urls) {
 const MainContent = () => {
   const [showModal, setShowModal] = useState(false);
   const [open, setOpen] = useState(false);
-  const [openVideo, setOpenVideo] = useState(false);
+  const [openFullMoonVideo, setOpenFullMoonVideo] = useState(false);
+  const [openIfVideo, setOpenIfVideo] = useState(false);
   const [openBurning, setOpenBurning] = useState(false);
   const [openTrash, setOpenTrash] = useState(false);
   const [showWebamp, setShowWebamp] = useState(false);
@@ -53,12 +54,20 @@ const MainContent = () => {
   const originalTitle = useRef(document.title);
 
   useEffect(() => {
-    if (openVideo) {
+    if (openFullMoonVideo) {
       document.title = "full moon. -ICON2025";
     } else {
       document.title = originalTitle.current;
     }
-  }, [openVideo]);
+  }, [openFullMoonVideo]);
+
+  useEffect(() => {
+    if (openIfVideo) {
+      document.title = "if. (spring in new york)";
+    } else {
+      document.title = originalTitle.current;
+    }
+  }, [openIfVideo]);
 
   const iconBase =
     "w-fit min-h-[90px] flex flex-col justify-start items-center text-center shadow-2xl shadow-transparent cursor-pointer";
@@ -87,7 +96,7 @@ const MainContent = () => {
           >
             <FolderIcon
               title="full moon.(fall in tokyo)"
-              onClick={() => handleClick(() => setOpenVideo(true))}
+              onClick={() => handleClick(() => setOpenFullMoonVideo(true))}
               index={0}
             />
           </motion.section>
@@ -140,8 +149,24 @@ const MainContent = () => {
             </AnimatePresence>
           </motion.section>
 
-          {/* Burning Icon */}
+
           <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            {...dragEvents}
+          >
+            <FolderIcon
+              title="if. (spring in new york)"
+              onClick={() => handleClick(() => setOpenIfVideo(true))}
+              index={3}
+            />
+          </motion.section>
+
+          {/* Burning Icon */}
+          {/* <motion.section
             className={iconBase}
             drag
             dragConstraints={constraintsRef}
@@ -170,7 +195,7 @@ const MainContent = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.section>
+          </motion.section> */}
 
           {/* Lookbook */}
           <motion.section
@@ -224,11 +249,28 @@ const MainContent = () => {
         {/* Contact Modal */}
         <Modal isOpen={open} onClose={() => setOpen(false)} />
 
-        {/* Video Modal */}
-        <VideoSection isOpen={openVideo} onClose={() => setOpenVideo(false)} />
+        {/*Full Moon Video Modal */}
+        <VideoSection  
+        isOpen={openFullMoonVideo}
+        onClose={() => setOpenFullMoonVideo(false)}
+        videoId="dku79-2_SCQ"
+        title="Brent Faiyaz - full moon"
+        downloadUrl="https://www.dropbox.com/scl/fi/jt2ek6rw1y4ix9uhg61iu/Full-Moon-M9-Loud.wav?dl=0"
+        downloadText="Download Full Moon - M8 - Loud"
+        />
+
+        {/* if. (spring in new york) Video Modal */}
+        <VideoSection  
+        isOpen={openIfVideo}
+        onClose={() => setOpenIfVideo(false)}
+        videoId="4L306Dv4PmY"
+        title="Brent Faiyaz - if. (spring in new york)"
+        downloadUrl="https://www.youtube.com/watch?v=4L306Dv4PmY"
+        downloadText="Watch if. (spring in new york) on youtube"
+        />
 
         {/* Burning Icon Modal */}
-        <AnimatePresence mode="wait">
+        {/* <AnimatePresence mode="wait">
           {openBurning && (
             <motion.div
               className="fixed inset-0 bg-black/70 flex items-center justify-center z-30"
@@ -267,7 +309,7 @@ const MainContent = () => {
               </div>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
 
         {/* Trash Modal */}
         <AnimatePresence mode="wait">
