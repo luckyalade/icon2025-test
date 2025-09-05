@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 
-const VideoModal = ({ isOpen, onClose, videoId, title, downloadUrl, downloadText }) => {
+const VideoModal = ({ isOpen, onClose, videoId, title, downloadUrl = null, downloadText }) => {
   const EMBED_BASE = `https://www.youtube.com/embed/${videoId}`;
   const MAXRES_THUMB = `https://img.youtube.com/vi/${videoId}/maxresdefault.jpg`;
   const HQ_THUMB = `https://img.youtube.com/vi/${videoId}/hqdefault.jpg`;
@@ -95,8 +95,8 @@ const VideoModal = ({ isOpen, onClose, videoId, title, downloadUrl, downloadText
             </div>
 
             {/* Download link */}
-            {downloadUrl && (
-              <div className="py-2 md:py-6 text-center">
+            <div className="py-2 md:py-6 text-center">
+              {downloadUrl ? (
                 <a
                   href={downloadUrl}
                   target="_blank"
@@ -105,8 +105,12 @@ const VideoModal = ({ isOpen, onClose, videoId, title, downloadUrl, downloadText
                 >
                   {downloadText}
                 </a>
-              </div>
-            )}
+              ) : (
+                <span className="inline-block text-white font-bold md:text-lg text-xs">
+                  full moon. (fall in tokyo)
+                </span>
+              )}
+            </div>
           </motion.div>
         </motion.div>
       )}

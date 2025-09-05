@@ -270,8 +270,8 @@ const MainContent = () => {
         onClose={() => setOpenFullMoonVideo(false)}
         videoId="dku79-2_SCQ"
         title="Brent Faiyaz - full moon"
-        downloadUrl="https://www.dropbox.com/scl/fi/jt2ek6rw1y4ix9uhg61iu/Full-Moon-M9-Loud.wav?dl=0"
-        downloadText="Download Full Moon - M8 - Loud"
+        downloadUrl={null}
+        downloadText="Full Moon - M8 - Loud"
         />
 
         {/* if. (spring in new york) Video Modal */}
