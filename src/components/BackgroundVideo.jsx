@@ -17,16 +17,17 @@ const BackgroundVideo = () => {
           opacity: 1,
           width: "100%",
           height: "100%",
-          zIndex: 0,
+          zIndex: -1,
           visibility: "visible",
           objectFit: "cover",
           position: "absolute",
           top: 0,
           left: 0,
+          mixBlendMode: "multiply",
         }}
       >
         <source
-          src="/BRENT-FULL-MOON-SITE-MAIN-COMPRESSED.mp4"
+          src="/if_spring_in_ny_for_site.mp4"
           type="video/mp4"
         />
       </video>
@@ -38,12 +39,13 @@ const BackgroundVideo = () => {
           left: 0,
           right: 0,
           bottom: 0,
-          backgroundSize: "512px 512px",
-          backgroundImage:
-            'url("https://icon2025.com/_jsapps/backdrop/video/assets/noise.png")',
+          backgroundColor:"#D6DDE2 ",
+          // backgroundSize: "512px 512px",
+          // backgroundImage:
+          //   'url("https://icon2025.com/_jsapps/backdrop/video/assets/noise.png")',
           display: "block",
           pointerEvents: "none",
-          zIndex: 0,
+          zIndex: -2,
         }}
       />
       {/* <div className="bg-gray-200/40 absolute top-0 left-0 right-0 bottom-0 w-full h-full z-[2]" /> */}

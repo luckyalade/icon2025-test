@@ -17,6 +17,14 @@ const initialTracks = [
     url: "https://dl.dropboxusercontent.com/scl/fi/jt2ek6rw1y4ix9uhg61iu/Full-Moon-M9-Loud.wav?rlkey=3iuswtkrh77p7ttxzpr8p16gv",
     // duration: 3.3,
   },
+  {
+    metaData: {
+      artist: "Brent Faiyaz",
+      title: "Brent Faiyaz - if. (spring in new york)",
+    },
+    url: "/Brent_Faiyaz-if.(spring in new york).mp3",
+    // duration: 3.3,
+  },
 ];
 
 // Define the AOL Instant Messenger Amp skin as our default
