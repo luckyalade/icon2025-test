@@ -85,6 +85,21 @@ const MainContent = () => {
 
         {/* All Icons in Single Column */}
         <div className="flex flex-col gap-2">
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            {...dragEvents}
+          >
+            <FolderIcon
+              title="if. (spring in new york)"
+              onClick={() => handleClick(() => setOpenIfVideo(true))}
+              index={0}
+            />
+          </motion.section>
+
           {/* Folder */}
           <motion.section
             className={iconBase}
@@ -97,7 +112,7 @@ const MainContent = () => {
             <FolderIcon
               title="full moon.(fall in tokyo)"
               onClick={() => handleClick(() => setOpenFullMoonVideo(true))}
-              index={0}
+              index={1}
             />
           </motion.section>
 
@@ -113,7 +128,7 @@ const MainContent = () => {
             <FolderIcon
               title={showWebamp ? "hide player" : "show player"}
               onClick={() => handleClick(() => setShowWebamp(!showWebamp))}
-              index={1}
+              index={2}
             />
           </motion.section>
 
@@ -142,7 +157,7 @@ const MainContent = () => {
                   <FolderIcon
                     title="trash"
                     onClick={() => handleClick(() => setOpenTrash(true))}
-                    index={2}
+                    index={3}
                   />
                 </motion.div>
               )}
@@ -150,7 +165,7 @@ const MainContent = () => {
           </motion.section>
 
 
-          <motion.section
+          {/* <motion.section
             className={iconBase}
             drag
             dragConstraints={constraintsRef}
@@ -163,7 +178,7 @@ const MainContent = () => {
               onClick={() => handleClick(() => setOpenIfVideo(true))}
               index={3}
             />
-          </motion.section>
+          </motion.section> */}
 
           {/* Burning Icon */}
           {/* <motion.section
@@ -198,7 +213,7 @@ const MainContent = () => {
           </motion.section> */}
 
           {/* Lookbook */}
-          <motion.section
+          {/* <motion.section
             className={iconBase}
             drag
             dragConstraints={constraintsRef}
@@ -211,7 +226,7 @@ const MainContent = () => {
               onClick={() => handleClick(() => setShowModal(true))}
               index={4}
             />
-          </motion.section>
+          </motion.section> */}
 
           {/* Contact */}
           <motion.section
@@ -225,7 +240,7 @@ const MainContent = () => {
             <FolderIcon
               title="mail"
               onClick={() => handleClick(() => setOpen(true))}
-              index={5}
+              index={4}
             />
           </motion.section>
         </div>
