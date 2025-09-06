@@ -104,7 +104,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
   return (
     <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-50 p-4">
       <motion.div
-        className="bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden"
+        className="text-start bg-white rounded-lg shadow-xl max-w-3xl w-full max-h-[90vh] overflow-hidden"
         initial={{ opacity: 0, scale: 0.9 }}
         animate={{ opacity: 1, scale: 1 }}
         transition={{ duration: 0.3 }}
@@ -112,10 +112,45 @@ const AdminDashboard = ({ isOpen, onClose }) => {
         {/* Header */}
         <div className="bg-[#0061a5] text-white px-6 py-4 flex justify-between items-center">
           <div>
-            <h1 className="text-2xl font-bold">Admin Dashboard</h1>
-            <p className="text-sm opacity-90">Welcome, {currentUser?.email}</p>
+            <h1 className="text-2xl font-bold">Admin <span className='hidden md:inline'> Dashboard</span></h1>
+            <p className="text-sm opacity-90"><span className='hidden md:inline'>Welcome,</span> {currentUser?.email}</p>
           </div>
-          <div className="flex flex-col md:flex-row items-center gap-3">
+          
+          {/* Mobile Layout */}
+          <div className="flex md:hidden items-center gap-2">
+            <button
+              onClick={loadSubmissions}
+              className="bg-white/20 hover:bg-white/30 p-2 rounded transition-colors"
+              title="Refresh"
+            >
+              <svg className="w-4 h-4" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M4 4v5h.582m15.356 2A8.001 8.001 0 004.582 9m0 0H9m11 11v-5h-.581m0 0a8.003 8.003 0 01-15.357-2m15.357 2H15" />
+              </svg>
+            </button>
+            <button
+              onClick={handleLogout}
+              className="bg-white/20 hover:bg-white/30 p-2 rounded transition-colors"
+              title="Logout"
+            >
+              <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" viewBox="0 0 24 24" role="img" aria-labelledby="logoutOutlineTitle" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">
+                <title id="logoutOutlineTitle">Logout</title>
+                <path d="M9 21H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h4"/>
+                <path d="M16 17l5-5-5-5"/>
+                <path d="M21 12H9"/>
+              </svg>
+
+            </button>
+            <button
+              onClick={onClose}
+              className="text-white bg-white/20 hover:bg-white/30 rounded px-2 py-1 transition-colors"
+              title="Close"
+            >
+              ✕
+            </button>
+          </div>
+          
+          {/* Desktop Layout */}
+          <div className="hidden md:flex flex-row items-center gap-3">
             <button
               onClick={loadSubmissions}
               className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-sm transition-colors"
@@ -130,15 +165,9 @@ const AdminDashboard = ({ isOpen, onClose }) => {
             </button>
             <button
               onClick={onClose}
-              className="block md:hidden absolute right-6 top-9 md:relative md:top-0 md:right-0 text-white hover:bg-white/20 rounded px-2 py-1 transition-colors"
+              className="text-white hover:bg-white/20 rounded px-2 py-1 transition-colors"
             >
-            {loading ? "" : "✕" }  
-            </button>
-            <button
-              onClick={onClose}
-              className="hidden md:block absolute right-6 top-9 md:relative md:top-0 md:right-0 text-white hover:bg-white/20 rounded px-2 py-1 transition-colors"
-            >
-            ✕ 
+              ✕
             </button>
           </div>
         </div>
@@ -227,7 +256,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
                   
                   <div className="mt-3 flex justify-between items-center text-xs text-gray-500">
                     <span>ID: {submission.id}</span>
-                    <span>Submitted via: Contact Form</span>
+                    <span className='hidden md:inline'>Submitted via: Contact Form</span>
                   </div>
                 </motion.div>
               ))}
