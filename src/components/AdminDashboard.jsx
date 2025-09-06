@@ -113,7 +113,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
         <div className="bg-[#0061a5] text-white px-6 py-4 flex justify-between items-center">
           <div>
             <h1 className="text-2xl font-bold">Admin <span className='hidden md:inline'> Dashboard</span></h1>
-            <p className="text-sm opacity-90"><span className='hidden md:inline'>Welcome,</span> {currentUser?.email}</p>
+            <p className="text-xs md:text-sm opacity-90"><span className='hidden md:inline'>Welcome,</span> {currentUser?.email}</p>
           </div>
           
           {/* Mobile Layout */}
