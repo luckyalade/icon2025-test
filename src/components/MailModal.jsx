@@ -2,20 +2,65 @@ import React, { useState } from "react";
 //eslint-disable-next-line
 import { motion } from "framer-motion";
 import Typewriter from "typewriter-effect";
+import { saveSubmissionToFirebase, saveToLocalStorageFallback } from "../utils/firebaseUtils";
 
-const Modal = ({ isOpen, onClose }) => {
+const MailModal = ({ isOpen, onClose }) => {
+  const [name, setName] = useState("");
   const [message, setMessage] = useState("");
   const [sent, setSent] = useState(false);
+  const [isLoading, setIsLoading] = useState(false);
+  const [saveStatus, setSaveStatus] = useState("");
 
-  const handleSubmit = (e) => {
+  const handleSubmit = async (e) => {
     e.preventDefault();
-    if (message.trim() === "") return;
-    console.log("Message sent:", message);
-    setMessage(""); // clear textarea after send
-    setSent(true); // show sent popup
-    setTimeout(() => setSent(false), 2000); // hide popup after 2s
+    if (name.trim() === "" || message.trim() === "") return;
+    
+    setIsLoading(true);
+    setSaveStatus("");
+    
+    try {
+      // Try to save to Firebase first
+      const firebaseResult = await saveSubmissionToFirebase({ 
+        name: name.trim(), 
+        message: message.trim() 
+      });
+      
+      if (firebaseResult.success) {
+        console.log("Message saved to Firebase:", { name, message });
+        setSaveStatus("Message sent successfully!");
+      } else {
+        // Fallback to localStorage if Firebase fails
+        console.warn("Firebase save failed, using localStorage fallback");
+        const localResult = saveToLocalStorageFallback({ 
+          name: name.trim(), 
+          message: message.trim() 
+        });
+        
+        if (localResult.success) {
+          setSaveStatus("Message sent (saved locally)!");
+        } else {
+          throw new Error("Both Firebase and localStorage failed");
+        }
+      }
+      
+      setName(""); // clear name field after send
+      setMessage(""); // clear textarea after send
+      setSent(true); // show sent popup
+      
+      setTimeout(() => {
+        setSent(false);
+        setSaveStatus("");
+      }, 3000); // hide popup after 3s
+      
+    } catch (error) {
+      console.error("Error saving submission:", error);
+      setSaveStatus("An error occurred. Please try again.");
+      setTimeout(() => setSaveStatus(""), 3000);
+    } finally {
+      setIsLoading(false);
+    }
   };
-
+  
   if (!isOpen) return null;
 
   return (
@@ -75,12 +120,23 @@ const Modal = ({ isOpen, onClose }) => {
             }}
           />
         </div>
-
+        
         {/* Form at bottom */}
         <form
           onSubmit={handleSubmit}
           className="p-3 border-t border-gray-300 flex flex-col"
         >
+          <label htmlFor="name" className="text-sm font-medium mb-1">
+            Name
+          </label>
+          <input
+            id="name"
+            type="text"
+            value={name}
+            onChange={(e) => setName(e.target.value)}
+            className="p-2 border border-gray-400 rounded focus:outline-none focus:ring-2 focus:ring-[#0061a5] text-sm font-medium mb-3"
+            placeholder="Enter your name..."
+          />
           <label htmlFor="message" className="text-sm font-medium mb-1">
             Your Message
           </label>
@@ -93,10 +149,22 @@ const Modal = ({ isOpen, onClose }) => {
           />
           <button
             type="submit"
-            className="mt-3 py-2 px-4 bg-[#0061a5] hover:bg-[#0061a5] text-white rounded shadow text-sm transition-all duration-300"
+            disabled={isLoading}
+            className="mt-3 py-2 px-4 bg-[#0061a5] hover:bg-[#0061a5] disabled:bg-gray-400 disabled:cursor-not-allowed text-white rounded shadow text-sm transition-all duration-300"
           >
-            Send
+            {isLoading ? "Saving..." : "Send"}
           </button>
+          
+          {/* Status message */}
+          {saveStatus && (
+            <div className={`mt-2 text-xs text-center p-2 rounded ${
+              saveStatus.includes("success") || saveStatus.includes("downloaded") 
+                ? "bg-green-100 text-green-700" 
+                : "bg-red-100 text-red-700"
+            }`}>
+              {saveStatus}
+            </div>
+          )}
         </form>
 
         {/* Sent Popup */}
@@ -107,7 +175,7 @@ const Modal = ({ isOpen, onClose }) => {
             exit={{ opacity: 0 }}
             className="absolute top-1/2 left-1/2 transform -translate-x-1/2 bg-green-700 text-white px-4 py-2 rounded shadow-lg text-sm"
           >
-            ✅ Message Sent!
+            ✅ Message Sent & Saved!
           </motion.div>
         )}
       </motion.div>
@@ -115,4 +183,4 @@ const Modal = ({ isOpen, onClose }) => {
   );
 };
 
-export default Modal;
+export default MailModal;

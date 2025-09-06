@@ -2,10 +2,13 @@ import React, { useState, useRef, useEffect } from "react";
 import CardStackModal from "./LookBook";
 // eslint-disable-next-line
 import { motion, AnimatePresence, LayoutGroup } from "framer-motion";
-import Modal from "./WindowsModal";
+import MailModal from "./MailModal";
 import VideoSection from "./VideoSection";
 import WebampReactApp from "./Webamp";
 import FolderIcon from "./FolderIcon";
+import { useAuth } from "../contexts/AuthContext";
+import AdminLogin from "./AdminLogin";
+import AdminDashboard from "./AdminDashboard";
 
 const LARGE_BURNING =
   "https://freight.cargo.site/t/original/i/ebe9ab5e73c964815f0062d9e4d8358c30f1b6fc9bb2b43c8bbae30594c18ecc/BurningIcon.png";
@@ -37,7 +40,11 @@ const MainContent = () => {
   const [openBurning, setOpenBurning] = useState(false);
   const [openTrash, setOpenTrash] = useState(false);
   const [showWebamp, setShowWebamp] = useState(false);
+  const [showAdminLogin, setShowAdminLogin] = useState(false);
+  const [showAdminDashboard, setShowAdminDashboard] = useState(false);
   const constraintsRef = useRef(null);
+  
+  const { isAdmin } = useAuth();
 
   // 👇 Track drag state
   const [isDragging, setIsDragging] = useState(false);
@@ -49,6 +56,15 @@ const MainContent = () => {
   const dragEvents = {
     onDragStart: () => setIsDragging(true),
     onDragEnd: () => setTimeout(() => setIsDragging(false), 50),
+  };
+
+  // Handle admin access
+  const handleAdminAccess = () => {
+    if (isAdmin) {
+      setShowAdminDashboard(true);
+    } else {
+      setShowAdminLogin(true);
+    }
   };
 
   const originalTitle = useRef(document.title);
@@ -243,6 +259,22 @@ const MainContent = () => {
               index={4}
             />
           </motion.section>
+
+          {/* Admin */}
+          <motion.section
+            className={iconBase}
+            drag
+            dragConstraints={constraintsRef}
+            dragElastic={0.1}
+            dragMomentum={false}
+            {...dragEvents}
+          >
+            <FolderIcon
+              title={isAdmin ? "admin" : "admin login"}
+              onClick={() => handleClick(handleAdminAccess)}
+              index={5}
+            />
+          </motion.section>
         </div>
 
 
@@ -262,7 +294,20 @@ const MainContent = () => {
         />
 
         {/* Contact Modal */}
-        <Modal isOpen={open} onClose={() => setOpen(false)} />
+        <MailModal isOpen={open} onClose={() => setOpen(false)} />
+        
+        {/* Admin Login Modal */}
+        {showAdminLogin && (
+          <AdminLogin onClose={() => setShowAdminLogin(false)} />
+        )}
+        
+        {/* Admin Dashboard Modal */}
+        {showAdminDashboard && (
+          <AdminDashboard 
+            isOpen={showAdminDashboard} 
+            onClose={() => setShowAdminDashboard(false)} 
+          />
+        )}
 
         {/*Full Moon Video Modal */}
         <VideoSection  
