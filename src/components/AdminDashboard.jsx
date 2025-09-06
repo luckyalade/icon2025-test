@@ -267,42 +267,61 @@ const AdminDashboard = ({ isOpen, onClose }) => {
       
       {/* Delete Confirmation Modal */}
       {deleteModal.isOpen && (
-        <div className="fixed inset-0 bg-black/50 flex justify-center items-center z-[60]">
+        <div className="fixed inset-0 bg-black/70 flex justify-center items-center z-[60] p-4">
           <motion.div
-            className="bg-white rounded-lg shadow-xl max-w-md w-full mx-4"
-            initial={{ opacity: 0, y: 60 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.3 }}
+            className="bg-white rounded-xl shadow-2xl max-w-md w-full overflow-hidden"
+            initial={{ opacity: 0, scale: 0.9, y: 20 }}
+            animate={{ opacity: 1, scale: 1, y: 0 }}
+            exit={{ opacity: 0, scale: 0.9, y: 20 }}
+            transition={{ duration: 0.2, ease: "easeOut" }}
           >
-            <div className="p-6 ">
-              <div className="flex items-center mb-4">
-                <div className="bg-red-100 rounded-full p-3 mr-4">
-                  <svg className="w-5 h-5 text-red-600" fill="none" stroke="currentColor" viewBox="0 0 24 24">
-                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+            {/* Modal Header */}
+            <div className="bg-gradient-to-r from-red-700 to-red-800 px-6 py-4">
+              <div className="flex items-center gap-3">
+                <div className="bg-white/20 rounded-full p-2">
+                  <svg className="w-5 h-5 text-white" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                    <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16" />
                   </svg>
                 </div>
                 <div>
-                  <h3 className="text-lg font-semibold text-gray-900">Confirm Deletion</h3>
-                  <p className="text-sm text-gray-500">This action cannot be undone</p>
+                  <h3 className="text-lg font-bold text-white">Delete Submission</h3>
+                  <p className="text-red-100 text-sm">This action is permanent</p>
+                </div>
+              </div>
+            </div>
+            
+            {/* Modal Body */}
+            <div className="p-6">
+              <div className="mb-6">
+                <p className="text-gray-700 leading-relaxed">
+                  Are you sure you want to delete the submission from{' '}
+                  <span className="font-semibold text-gray-900">"{deleteModal.submissionName}"</span>?
+                </p>
+                <div className="mt-3 p-3 bg-red-50 border border-red-200 rounded-lg">
+                  <div className="flex items-start gap-2">
+                    <svg className="w-4 h-4 text-red-600 mt-0.5 flex-shrink-0" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                      <path strokeLinecap="round" strokeLinejoin="round" strokeWidth={2} d="M12 9v2m0 4h.01m-6.938 4h13.856c1.54 0 2.502-1.667 1.732-2.5L13.732 4c-.77-.833-1.964-.833-2.732 0L3.732 16.5c-.77.833.192 2.5 1.732 2.5z" />
+                    </svg>
+                    <p className="text-sm text-red-800">
+                      Once deleted, this submission cannot be recovered. All associated data will be permanently removed.
+                    </p>
+                  </div>
                 </div>
               </div>
               
-              <p className="text-gray-700 mb-6">
-                Are you sure you want to delete the submission from <strong>{deleteModal.submissionName}</strong>?
-              </p>
-              
-              <div className="flex justify-end gap-3">
+              {/* Action Buttons */}
+              <div className="flex flex-col-reverse sm:flex-row gap-3">
                 <button
                   onClick={closeDeleteModal}
-                  className="px-4 py-2 text-gray-600 hover:text-gray-800 border border-gray-300 rounded-lg hover:bg-gray-50 transition-colors"
+                  className="flex-1 px-4 py-2.5 text-gray-700 bg-gray-100 hover:bg-gray-200 border border-gray-300 rounded-lg transition-colors duration-200 font-medium"
                 >
                   Cancel
                 </button>
                 <button
                   onClick={confirmDelete}
-                  className="px-4 py-2 bg-red-600 hover:bg-red-700 text-white rounded-lg transition-colors"
+                  className="flex-1 px-4 py-2.5 bg-red-700 hover:bg-red-700 text-white rounded-lg transition-colors duration-200 font-medium shadow-lg hover:shadow-xl transform hover:-translate-y-0.5"
                 >
-                  Delete
+                  Delete Submission
                 </button>
               </div>
             </div>
