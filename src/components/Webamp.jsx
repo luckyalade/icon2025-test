@@ -29,14 +29,14 @@ const initialTracks = [
 
 // Define the AOL Instant Messenger Amp skin as our default
 const AOL_INSTANT_MESSENGER_AMP_SKIN = {
-  url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/alade_5.wsz.zip",
+  url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/alade_6.wsz.zip",
   name: "Icon Radio",
 };
 
 const availableSkins = [
   AOL_INSTANT_MESSENGER_AMP_SKIN,
   {
-    url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/alade_5.wsz.zip",
+    url: "https://cdn.jsdelivr.net/gh/luckyalade/winamp-skins-1@main/alade_6.wsz.zip",
     name: "Icon Radio",
   },
 ];
