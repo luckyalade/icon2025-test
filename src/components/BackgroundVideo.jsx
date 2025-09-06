@@ -7,7 +7,7 @@ const BackgroundVideo = () => {
       style={{ width: "100%", height: "100vh", position: "absolute" }}
     >
       <video
-        className="video_embed lg:hidden"
+        className="video_embed"
         autoPlay
         playsInline
         muted
@@ -28,31 +28,6 @@ const BackgroundVideo = () => {
       >
         <source
           src="/if_spring_in_ny_for_site.mp4"
-          type="video/mp4"
-        />
-      </video>
-      <video
-        className="video_embed hidden lg:block"
-        autoPlay
-        playsInline
-        muted
-        loop
-        id="video_179"
-        style={{
-          opacity: 1,
-          width: "100%",
-          height: "100%",
-          zIndex: -1,
-          visibility: "visible",
-          objectFit: "cover",
-          position: "absolute",
-          top: 0,
-          left: 0,
-          mixBlendMode: "multiply",
-        }}
-      >
-        <source
-          src="/BRENT-FULL-MOON-SITE-MAIN-COMPRESSED.mp4"
           type="video/mp4"
         />
       </video>
