@@ -115,7 +115,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
             <h1 className="text-2xl font-bold">Admin Dashboard</h1>
             <p className="text-sm opacity-90">Welcome, {currentUser?.email}</p>
           </div>
-          <div className="flex items-center gap-3">
+          <div className="flex flex-col md:flex-row items-center gap-3">
             <button
               onClick={loadSubmissions}
               className="bg-white/20 hover:bg-white/30 px-3 py-1 rounded text-sm transition-colors"
