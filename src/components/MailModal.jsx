@@ -96,6 +96,8 @@ const MailModal = ({ isOpen, onClose }) => {
           <Typewriter
             options={{
               cursor: "", // hides the blinking cursor
+              delay: 25,
+              deleteSpeed: 10
             }}
             onInit={(typewriter) => {
               typewriter
