@@ -285,7 +285,7 @@ const MainContent = () => {
         videoId="4L306Dv4PmY"
         title="Brent Faiyaz - if. (spring in new york)"
         downloadUrl="https://www.youtube.com/watch?v=4L306Dv4PmY"
-        downloadText="Watch if. (spring in new york) on youtube"
+        downloadText="watch if. (spring in new york) on youtube"
         />
 
         {/* Burning Icon Modal */}
