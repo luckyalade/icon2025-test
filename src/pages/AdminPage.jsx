@@ -61,7 +61,7 @@ const AdminPage = () => {
             {...dragEvents}
           >
             <FolderIcon
-              title={isAdmin ? "admin dashboard" : "admin login"}
+              title={isAdmin ? "admin dashboard" : "login to icon"}
               onClick={() => handleClick(handleAdminAccess)}
               index={0}
             />

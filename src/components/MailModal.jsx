@@ -66,6 +66,10 @@ const MailModal = ({ isOpen, onClose }) => {
   return (
     <div
       className="fixed inset-0 bg-black/40 flex justify-center items-center z-50 px-4 md:px-0"
+      style={{
+        fontFamily: "Helvetica, Arial, sans-serif",
+        fontWeight: 700,
+      }}
     >
       <motion.div
         className="bg-gray-200 w-[400px] h-[500px] md:h-[600px] shadow-md rounded-sm overflow-hidden border-2 border-[#0061a5] flex flex-col"

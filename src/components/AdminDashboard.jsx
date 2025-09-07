@@ -165,7 +165,7 @@ const AdminDashboard = ({ isOpen, onClose }) => {
             </button>
             <button
               onClick={onClose}
-              className="text-white hover:bg-white/20 rounded px-2 py-1 transition-colors"
+              className="text-white bg-white/20 hover:bg-white/30 rounded px-2 py-[2px] transition-colors"
             >
               ✕
             </button>

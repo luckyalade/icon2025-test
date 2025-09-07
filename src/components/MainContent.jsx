@@ -80,6 +80,10 @@ const MainContent = () => {
       <main
         className="relative w-full h-screen flex flex-col justify-start items-start gap-2 pt-14 pl-4 md:pl-10 overflow-hidden"
         ref={constraintsRef}
+        style={{
+        fontFamily: "Helvetica, Arial, sans-serif",
+        fontWeight: 700,
+      }}
       >
         {showWebamp && <WebampReactApp key="webamp-singleton" />}
 
@@ -133,7 +137,7 @@ const MainContent = () => {
           </motion.section>
 
           {/* Trash */}
-          <motion.section
+          {/* <motion.section
             className={iconBase}
             drag
             dragConstraints={constraintsRef}
@@ -162,7 +166,7 @@ const MainContent = () => {
                 </motion.div>
               )}
             </AnimatePresence>
-          </motion.section>
+          </motion.section> */}
 
 
           {/* <motion.section
@@ -327,7 +331,7 @@ const MainContent = () => {
         </AnimatePresence> */}
 
         {/* Trash Modal */}
-        <AnimatePresence mode="wait">
+        {/* <AnimatePresence mode="wait">
           {openTrash && (
             <motion.div
               className="fixed inset-0 bg-black/70 flex items-center justify-center z-30"
@@ -366,7 +370,7 @@ const MainContent = () => {
               </div>
             </motion.div>
           )}
-        </AnimatePresence>
+        </AnimatePresence> */}
       </main>
     </LayoutGroup>
   );
